@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2>{{ productId ? 'Edit Product' : 'Add Product' }}</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name" >
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" rows="3" formControlName="description" ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" formControlName="price" >
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="number" class="form-control" id="stock" formControlName="stock" >
+    </div>
+    <div class="mb-3">
+      <label for="categoryId" class="form-label">Category</label>
+      <select class="form-control" id="categoryId" formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.name }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ productId ? 'Update' : 'Add' }}</button>
+  </form>
+</div>

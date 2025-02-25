@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <h2>Product List</h2>
+    <button class="btn btn-primary mb-3" [disabled]="disabled" id="btnAdd" (click)="addProduct()">Add Product</button>
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+          <th (click)="onSortChange('productId')" [class.sortable]="true">ID</th>
+          <th (click)="onSortChange('name')" [class.sortable]="true">Name</th>
+          <th>Description</th>
+          <th (click)="onSortChange('price')" [class.sortable]="true">Price</th>
+          <th (click)="onSortChange('stock')" [class.sortable]="true">Stock</th>
+          <th>Category ID</th>
+          <th>Future Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td class="table-success">{{ product.productId }}</td>
+          <td class="table-info">{{ product.name }}</td>
+          <td class="table-success">{{ product.description }}</td>
+          <td class="table-info">{{ product.price }}</td>
+          <td class="table-success">{{ product.stock }}</td>
+          <td class="table-info">{{ product.categoryName }}</td>
+          <td class="table-success">{{ product.stock }}</td>
+          <td class="table-info">
+            <button class="btn btn-warning btn-sm" [disabled]="disabled" id="btnEdit" (click)="editProduct(product.productId)">Edit</button>
+            <button class="btn btn-danger btn-sm" [disabled]="disabled" id="btnDelete" (click)="deleteProduct(product.productId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="page === 1">
+          <a class="page-link" (click)="onPageChange(page - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let i of getTotalPages()" [class.active]="page === i">
+          <a class="page-link" (click)="onPageChange(i)">{{ i }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="page === getTotalPages().length">
+          <a class="page-link" (click)="onPageChange(page + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>

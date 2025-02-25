@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h2>Manage Categories</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="categoryName" class="form-label">Category Name</label>
+        <input type="text" class="form-control" id="categoryName" formControlName="name">
+      </div>
+      <button type="submit" [disabled]="disabled" class="btn btn-primary">{{ selectedCategory ? 'Update Category' : 'Add Category' }}</button>
+      <button type="button" [disabled]="disabled" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+    </form>
+    
+    <h3 class="mt-4">Category List</h3>
+    <!-- <ul class="list-group">
+      <li class="list-group-item" *ngFor="let category of categories">
+        {{ category.categoryId }} -
+        {{ category.name }}
+        <button type="button" class="btn btn-warning btn-sm float-end ms-2" (click)="onEditCategory(category)">Edit</button>
+        <button type="button" class="btn btn-danger btn-sm float-end" (click)="onDeleteCategory(category.categoryId)">Delete</button>
+      </li>
+    </ul> -->
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories">
+            <td class="table-success">{{ category.categoryId }}</td>
+            <td class="table-info">{{ category.name }}</td>
+            <td class="table-success">
+              <button class="btn btn-warning btn-sm" [disabled]="disabled" id="btnEdit" (click)="onEditCategory(category)">Edit</button>
+              <button class="btn btn-danger btn-sm" [disabled]="disabled" id="btnDelete"  (click)="onDeleteCategory(category.categoryId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

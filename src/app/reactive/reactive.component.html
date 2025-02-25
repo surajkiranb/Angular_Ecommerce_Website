@@ -1,0 +1,24 @@
+<p>reactive works!</p>
+
+<form [formGroup]="userForm" (submit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input type="text" name="name" formControlName="name" />
+    <div *ngIf="name?.invalid && name?.touched" style="color: red;">
+        Name is Required.
+    </div>
+    <br /><br />
+    <label for="email">Email:</label>
+    <input type="email" name="email" formControlName="email" />
+    <div *ngIf="email?.invalid && email?.touched" style="color: red;">
+        Email is Required.
+    </div>
+
+    <br /><br />
+    <label for="age">Age:</label>
+    <input type="number" name="age" formControlName="age" />
+    <div *ngIf="age?.invalid && age?.touched" style="color: red;">
+        Age is Required.
+    </div>
+    <br /><br />
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>
